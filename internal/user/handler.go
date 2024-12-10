@@ -2,9 +2,12 @@ package user
 
 import (
 	"net/http"
+	"tren3/internal/handlers"
 
 	"github.com/julienschmidt/httprouter"
 )
+
+var _ handlers.Handler = &handler{} //подсказка
 
 const (
 	usersURL = "/users"
@@ -12,6 +15,10 @@ const (
 )
 
 type handler struct {
+}
+
+func NewHandler() handlers.Handler {
+	return &handler{}
 }
 
 func (h *handler) Register(router *httprouter.Router) {
@@ -24,17 +31,21 @@ func (h *handler) Register(router *httprouter.Router) {
 
 }
 func (h *handler) GetList(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+
 	w.Write([]byte("this is list of users"))
 }
 func (h *handler) GetUserByUUID(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+
 	w.Write([]byte("this is user by uuid"))
 
 }
 func (h *handler) CreateUser(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+
 	w.Write([]byte("this is create user"))
 
 }
 func (h *handler) UpdateUser(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+
 	w.Write([]byte("this is update user"))
 
 }
